@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{{ dir }}">
+<head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7SL2CFFPN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-H7SL2CFFPN');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ title }}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Beiruti:wght@400;700&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-orange: #ff8c00;
+      --text-color: #37474F;
+      --bg-color: #F8F9FA;
+      --container-bg: #FFFFFF;
+      --border-radius: 12px;
+      --shadow-light: 0 5px 15px rgba(0,0,0,0.1);
+      --shadow-medium: 0 10px 25px rgba(0,0,0,0.15);
+      --shadow-strong: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      line-height: 1.9;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: '{{ font }}', sans-serif;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    /* العنوان الرئيسي */
+    .title-header {
+      background: linear-gradient(135deg, var(--primary-orange), #ffa733);
+      color: white;
+      padding: 25px 30px;
+      border-radius: var(--border-radius);
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-strong);
+      text-align: center;
+      transition: all 0.2s ease-out;
+    }
+    .title-header:active {
+      box-shadow: var(--shadow-light);
+      transform: translateY(4px);
+    }
+
+    /* تنسيق الفقرات */
+    p {
+      background-color: var(--container-bg);
+      border-left: 5px solid var(--primary-orange);
+      padding: 20px 25px;
+      margin-bottom: 20px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      box-shadow: var(--shadow-medium);
+      font-size: 1.1em;
+      transition: all 0.2s ease-out;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    p:hover {
+      box-shadow: var(--shadow-strong);
+      transform: translateY(-5px);
+    }
+    p:active {
+      box-shadow: var(--shadow-light);
+      transform: translateY(2px);
+      transition-duration: 0.1s;
+    }
+
+    /* أيقونات وكتابة عريضة */
+    .material-icons {
+      vertical-align: middle;
+      margin-right: 10px;
+      margin-left: 5px;
+      font-size: 1.4em;
+    }
+    b, strong {
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    /* خط علوي للفقرات */
+    p::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-orange), transparent);
+      opacity: 0.7;
+    }
+
+    /* --- أنيميشن العناصر --- */
+    @keyframes fadeInUpStagger {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .title-header,
+    main > * {
+      opacity: 0;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    .animate-in {
+      animation-name: fadeInUpStagger;
+    }
+
+    /* --- زر الطباعة --- */
+    .print-btn {
+      background-color: var(--primary-orange);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-size: 1.2rem;
+      font-family: inherit;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: var(--shadow-medium);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+      margin-bottom: 20px;
+    }
+    .print-btn:hover {
+      background-color: #e67e00;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-strong);
+    }
+    .print-btn:active {
+      transform: translateY(2px);
+      box-shadow: var(--shadow-light);
+    }
+
+    /* --- أنماط خاصة بفتح الصفحة في نافذة جديدة (حل المشكلة الأولى) --- */
+    .new-window-mode .container {
+      max-width: 1200px;
+      width: 95%;
+    }
+
+    .new-window-mode main > * {
+      width: 100%;
+      box-sizing: border-box; /* عشان البادنج ما يأثرش على العرض */
+    }
+    .new-window-mode p {
+      font-size: 1.1rem; /* خط أكبر قليلاً */
+      line-height: 1.8;
+    }
+    .new-window-mode .title-header {
+      font-size: 1.1rem;
+      font-size: 1.1rem;
+    }
+
+    /* --- أنماط الطباعة (حل المشكلة الثانية) --- */
+    @media print {
+      /* إخفاء زر الطباعة */
+      .print-btn {
+        display: none !important;
+      }
+
+      /* إجبار المتصفح على طباعة الألوان والخلفيات */
+      body {
+        background-color: white; /* خلفية بيضاء للصفحة عند الطباعة */
+        -webkit-print-color-adjust: exact; /* لدعم متصفحات Webkit (كروم, سفاري) */
+        print-color-adjust: exact; /* المعيار الحديث */
+      }
+
+      /* التأكد من ظهور خلفية العنوان */
+      .title-header {
+        background: var(--primary-orange) !important; /* لون خالص بدل التدرج */
+        color: white !important;
+        box-shadow: none; /* إزالة الظلال لتوفير الحبر */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      /* التأكد من ظهور الحدود الجانبية للفقرات */
+      p {
+        border-left: 5px solid var(--primary-orange) !important;
+        box-shadow: none;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      /* إزالة الخلفية الرمادية للصفحة */
+      body {
+        background-color: white;
+      }
+
+      /* إزالة الظلال لتوفير الحبر */
+      * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+
+      /* منع كسر الفقرات عبر الصفحات */
+      p, .title-header {
+        page-break-inside: avoid;
+      }
+    }
+
+  </style>
+
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer'?'&l='+l: ''; j.async = true; j.src =
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-ML3SHVVK');
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- زر الطباعة -->
+    <button class="print-btn" id="printBtn">
+      <i class="material-icons">picture_as_pdf</i> Save as PDF
+    </button>
+
+    <header class="title-header">
+      <h1>{{ title }}</h1>
+    </header>
+
+    <main>
+      {{ content | safe }}
+    </main>
+
+    <span style="color:#ff8c00"><b>Generated With QuickLearn</b></span>
+  </div>
+
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ML3SHVVK"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ========== كشف إذا كنا في نافذة جديدة تم فتحها بواسطة openInNewTab ==========
+      // إذا كانت النافذة الحالية ليست النافذة الرئيسية (opener موجود) أو ليس لها مرجع سابق
+      if (window.opener || window.name === '') {
+        document.body.classList.add('new-window-mode');
+      }
+
+      // ========== أنيميشن العناصر ==========
+      const elementsToAnimate = [
+        document.querySelector('.title-header'),
+        ...document.querySelectorAll('main > *')
+      ];
+
+      let delay = 100;
+      elementsToAnimate.forEach((el) => {
+        if (el) {
+          el.classList.add('animate-in');
+          el.style.animationDelay = `${delay}ms`;
+          delay += 120;
+        }
+      });
+
+      // ========== كود الطباعة المحسن ==========
+      const printBtn = document.getElementById('printBtn');
+      if (printBtn) {
+        printBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          try {
+            window.print();
+          } catch (error) {
+            console.error('Print failed:', error);
+            alert('Failed to open print dialog. You can use the keyboard shortcut Ctrl+P directly.\n\n' +
+                  'If you are using a browser that blocks printing from iframes, try opening the summary in a separate window.');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+
+Disallow: /__pycache__/
+Disallow: /templates/
+Disallow: /app.py
+Disallow: /config.py
+Disallow: /requirements.txt
+
+
+Sitemap: https://sumsai.koyeb.app/sitemap.xml

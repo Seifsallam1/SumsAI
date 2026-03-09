@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7SL2CFFPN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-H7SL2CFFPN');
+  </script>
+
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>AI Summarizer &amp; PDF Summarizer Tool - QuickLearn</title>
+
+<meta name="description" content="Use QuickLearn's free AI summarizer to instantly shorten text, summarize PDF documents, and convert images to notes." />
+<meta name="keywords" content="AI summarizer, AI PDF summarizer, visual study notes, free summarizer" />
+<meta name="robots" content="index, follow" />
+
+<link rel="canonical" href="{{ SITE_URL }}/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<link rel="icon" type="image/png" href="/static/images/favicon.png">
+
+<!-- Open Graph for Social Media -->
+<meta property="og:title" content="AI Lesson Summarizer – Smart Visual Quick Summaries">
+<meta property="og:description" content="Transform complex lessons into simple, colorful, and visual summaries with AI for faster and smarter learning.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="QuickLearn">
+<meta property="og:url" content="{{ SITE_URL }}/" />
+<meta property="og:image" content="{{ SITE_URL }}/static/images/preview-image.png" />
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "WebApplication",
+"name": "QuickLearn",
+"url": "{{ SITE_URL }}/",
+"description": "AI-powered tool that turns lessons into visual summaries for faster and smarter studying.",
+"applicationCategory": "Education",
+"operatingSystem": "Web Browser",
+"creator": {
+"@type": "Organization",
+"name": "SumsAI"
+}
+}
+</script>
+
+
+</head>
+<body>
+<div class="container">
+
+<header class="hero-section">
+<h1 class="hero-title">Free & Unlimited <br><span class="highlight">AI Summarizer</span></h1>
+<p class="hero-subtitle">
+Turn long lessons, PDFs, and images into smart visual summaries instantly.
+<br>
+<strong>100% Free. No Sign-up. No Daily Limits.</strong>
+</p>
+
+<button class="cta-btn" onclick="document.getElementById('input-section').scrollIntoView();">
+Start Summarizing <span class="material-icons">arrow_downward</span>
+</button>
+<div style="text-align: center; margin-top: 15px;">
+<span style="color: #666; font-size: 1.1rem;">or</span>
+</div>
+
+<a href="{{ SITE_URL }}/library" style="text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; width: auto; margin: 0 auto; ">
+<button class="cta-btn" style="margin-top: 0;">
+Visit Library <span class="material-icons">menu_book</span>
+</button>
+</a>
+
+</header>
+
+<section class="features-container">
+
+<div class="feature-card">
+<span class="material-icons feature-icon">description</span>
+<h3 class="feature-title">Summarize Text</h3>
+<p class="feature-desc">
+Paste text up to 16,000 characters per request.
+</p>
+</div>
+
+<div class="feature-card">
+<span class="material-icons feature-icon">picture_as_pdf</span>
+<h3 class="feature-title">PDF Documents</h3>
+<p class="feature-desc">
+Upload PDF files to get an instant overview.
+</p>
+<span class="limit-badge">Max 20 Pages (Each Time)</span>
+</div>
+
+<div class="feature-card">
+<span class="material-icons feature-icon">image</span>
+<h3 class="feature-title">Visual Notes</h3>
+<p class="feature-desc">
+Upload photos of textbook pages or whiteboard notes.
+</p>
+<span class="limit-badge">Max 10 Images (Each Time)</span>
+</div>
+
+</section>
+
+
+<section class="samples-studio">
+<h2 class="studio-title">Experience the Magic</h2>
+<p class="studio-subtitle">
+Swipe to explore our visual AI summaries
+</p>
+
+<div class="studio-container">
+<div class="studio-item">
+<img src="{{ url_for('static', filename='images/summary1.jpg') }}" alt="AI Visual Summary 1">
+</div>
+<div class="studio-item">
+<img src="{{ url_for('static', filename='images/summary2.jpg') }}" alt="AI Visual Summary 2">
+</div>
+<div class="studio-item">
+<img src="{{ url_for('static', filename='images/summary3.jpg') }}" alt="AI Visual Summary 3">
+</div>
+</div>
+
+<div class="studio-indicators">
+<span class="dot active"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+</div>
+</section>
+
+
+<main role="main" id="input-section">
+
+<div class="input-wrapper">
+<div class="input-switcher">
+<label>
+<input type="radio" name="inputType" value="text" checked />
+<span class="radio-label">Text</span>
+</label>
+<label>
+<input type="radio" name="inputType" value="pdf" />
+<span class="radio-label">PDF</span>
+</label>
+<label>
+<input type="radio" name="inputType" value="image" />
+<span class="radio-label">Images</span>
+</label>
+</div>
+
+<form id="summaryForm" enctype="multipart/form-data">
+<div id="text-input-container">
+<textarea
+id="lessonInput"
+name="lesson_text"
+placeholder="Paste your lesson text here (up to 16,000 characters)..."
+oninput="checkLength()"
+></textarea>
+<div class="char-count" id="charCount">
+0 / 16000 characters
+</div>
+</div>
+
+<div id="file-input-container" style="display: none;">
+<div class="file-upload-wrapper">
+<label for="fileUpload" class="file-upload-label">
+<i class="material-icons">cloud_upload</i>
+<span>Click to upload files</span>
+<span style="font-size: 0.9em; color: #888; margin-top: 5px;">(PDF or Images)</span>
+</label>
+<input
+type="file"
+id="fileUpload"
+name="file"
+accept=".pdf, image/*"
+multiple
+style="display: none;"
+/>
+<div id="file-name-display" class="file-name"></div>
+</div>
+</div>
+
+<button type="submit" id="generateBtn" class="btn-generate">
+<span class="btn-text">Generate with AI</span>
+<div class="loader"></div>
+</button>
+</form>
+
+<button id="openTabBtn" class="btn-open-tab" onclick="openInNewTab()">
+Open Summary in New Tab
+</button>
+</div>
+
+<div style="margin-top: 40px; margin-bottom: 20px;">
+<h2 style="text-align: center; margin-bottom: 20px; color: var(--primary-orange);">Summary Result</h2>
+<div class="result-wrap">
+<!-- عناصر الانتظار (تظهر أثناء التحميل) -->
+<div id="loadingContainer" style="display: none; text-align: center; padding: 40px;">
+<div class="progress-bar-container">
+<div class="progress-bar"></div>
+</div>
+<p id="loadingMessage" style="margin-top: 20px; font-size: 1.2rem; color: #ff8c00; font-weight: bold;">
+🔍 Analyzing lesson...
+</p>
+</div>
+<!-- الإطار الذي يعرض النتيجة (يظهر بعد الانتهاء) -->
+<iframe id="resultFrame" title="Summary Result" style="display: block;"></iframe>
+</div>
+</div>
+
+<section id="about-section" style="margin-top: 60px; text-align: center;">
+<h2 style="color: var(--primary-orange); margin-bottom: 20px;">Why Use QuickLearn?</h2>
+<ul>
+<li><strong>100% Free:</strong> No hidden costs, use it as much as you need.</li>
+<li><strong>Visual Learning:</strong> We convert boring text into colorful, icon-based maps.</li>
+<li><strong>Smart Limits:</strong> Process up to 20 PDF pages or 10 images at once for free.</li>
+</ul>
+</section>
+
+</main>
+
+<footer role="contentinfo">
+<p>
+&copy; <span id="year"></span> QuickLearn. All rights reserved.
+</p>
+<p style="font-size:10px; color:#888; margin-top:4px;">
+Powered by Gemini API
+</p>
+</footer>
+</div>
+
+<script>
+const maxChars = 16000;
+const textarea = document.getElementById("lessonInput");
+const charCount = document.getElementById("charCount");
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function checkLength() {
+if (textarea) {
+const currentLength = textarea.value.length;
+charCount.textContent = `${currentLength} / ${maxChars} characters`;
+
+if (currentLength > maxChars) {
+textarea.value = textarea.value.substring(0, maxChars);
+charCount.textContent = `${maxChars} / ${maxChars} characters — maximum reached`;
+}
+}
+}
+</script>
+
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>
