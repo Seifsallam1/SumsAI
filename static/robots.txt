@@ -9,4 +9,4 @@ Disallow: /config.py
 Disallow: /requirements.txt
 
 
-Sitemap: https://sumsai.koyeb.app/sitemap.xml
+Sitemap: https://sumsai.onrender.com/sitemap.xml
